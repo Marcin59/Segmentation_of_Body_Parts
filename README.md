@@ -1,6 +1,6 @@
 # Semantic Segmentation Project
 
-This project focuses on semantic segmentation using various deep learning models. The dataset used is the LIP dataset, which contains images and annotations for semantic segmentation tasks.
+This project aims to perform semantic segmentation of human body parts using state-of-the-art deep learning models. Semantic segmentation involves classifying each pixel in an image into a predefined class. We utilize the LIP (Look into Person) dataset, which provides detailed annotations for various body parts, making it ideal for this task. The project explores different architectures, including Unet, Segnet, and Deeplab, and evaluates their performance using various optimizers. Our goal is to achieve high accuracy in segmenting body parts, which has applications in fields such as fashion, healthcare, and augmented reality.
 
 ## Dataset
 
