@@ -6,12 +6,38 @@ This project focuses on semantic segmentation using various deep learning models
 
 - **Dataset URL**: [LIP Dataset](https://paperswithcode.com/dataset/lip)
 
+### Simplified Dataset
+
+We simplified the dataset by clustering similar classes together. The clusters are defined as follows:
+
+```python
+CLASSES_CLUSTERS = {
+    0: [0],                 # Background
+    1: [1, 2, 4],           # Head Accessories (Hat, Hair, Sunglasses)
+    2: [5, 6, 7, 11],       # Upper Body Clothing (UpperClothes, Dress, Coat, Scarf)
+    3: [9, 10, 12],         # Lower Body Clothing (Pants, Skirt, Jumpsuits)
+    4: [14, 15, 3],         # Hands and Arms (Left-arm, Right-arm, Glove)
+    5: [8, 16, 17, 18, 19], # Legs and Feet (Socks, Left-leg, Right-leg, Left-shoe, Right-shoe)
+    6: [13]                 # Face
+}
+
+CLUSTERS_LABELS = {
+    0: "Background",
+    1: "Head Accessories",
+    2: "Upper Body Clothing",
+    3: "Lower Body Clothing",
+    4: "Hands and Arms",
+    5: "Legs and Feet",
+    6: "Face"
+}
+```
+
 ## Setup
 Run in project root
 
 1. **Install required packages**:
     ```python
-    pip install -r CV/Project3/requirements.txt
+    pip install -r ./requirements.txt
     ```
 
 2. **Download the dataset**:
@@ -56,48 +82,31 @@ imshow(prediction, variant="annotation")
 
 To run the Streamlit app, follow these steps:
 
-1. **Navigate to the project directory**:
-    ```sh
-    cd CV/Project3
-    ```
-
-2. **Run the Streamlit app**:
+1. **Run the Streamlit app**:
     ```sh
     streamlit run app.py
     ```
 
 This will start a local server and open the Streamlit app in your default web browser.
 
-## Points
+### Example usage:
 
-### Problem
+![Example usage](assets/LIP_seg.png)
 
-- Semantic segmentation - 1 point
+## Results
 
-### Model
+We tested a few architectures (Unet, Segnet, Deeplab) and for the best (Deeplab), we tested a few optimizers (Adam, RMSprop, and SGD). The best results were achieved with Deeplab using the Adam optimizer, which obtained an accuracy of 0.819 on the validation data.
 
-| Task                 | Points |
-|----------------------|--------|
-| Unet from scratch    | 1      |
-| Segnet from scratch  | 1      |
-| Deeplab from scratch | 1      |
+The training and validation results are logged and visualized using `train_logs` and `val_logs` images. These logs provide insights into the model's performance over epochs.
 
-### Dataset
+### Training Logs
 
-| Task                                           | Points |
-|------------------------------------------------|--------|
-| Evaluation on a set with at least 10000 photos | 1      |
+The `train_logs` image shows the training accuracy over each epoch, helping to understand how well the model is learning from the training data.
 
-### Training
+![Training Logs](assets/train_logs.png)
 
-| Task                                  | Points |
-|---------------------------------------|--------|
-| Testing a few optimizers (at least 3) | 1      |
+### Validation Logs
 
-### Tools
+The `val_logs` image displays the validation accuracy over each epoch, which is crucial for monitoring the model's performance on unseen data and detecting overfitting.
 
-| Task         | Points |
-|--------------|--------|
-| Tensorboard  | 1      |
-| DVC  | 2      |
-| Streamlit  | 1      |
+![Validation Logs](assets/val_logs.png)

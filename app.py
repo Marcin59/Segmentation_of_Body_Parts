@@ -67,7 +67,7 @@ with image_col:
 
 # load the model
 if not (model := st.session_state.get("model")):
-    model = tf.keras.models.load_model("./data/models/final_model.keras")
+    model = tf.keras.models.load_model("./data/models/deeplab_Adam_model.keras")
     st.session_state["model"] = model
 
 # predict the image
